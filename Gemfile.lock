@@ -1,0 +1,33 @@
+PATH
+  remote: .
+  specs:
+    jpt (0.1.4)
+      neatjson (~> 0.10)
+      ostruct (~> 0)
+      treetop (~> 1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    abnftt (0.2.9)
+    minitest (5.25.4)
+    neatjson (0.10.5)
+    ostruct (0.6.1)
+    polyglot (0.3.5)
+    rake (13.2.1)
+    treetop (1.6.14)
+      polyglot (~> 0.3)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  abnftt
+  bundler (~> 2)
+  jpt!
+  minitest
+  rake
+
+BUNDLED WITH
+   2.6.5

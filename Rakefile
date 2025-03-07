@@ -20,3 +20,6 @@ end
 task :linetest => :build do
   sh "bin/jpt -l test-data/test.jpl"
 end
+
+require "minitest/test_task"
+Minitest::TestTask.create

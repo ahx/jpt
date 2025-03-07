@@ -13,8 +13,9 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
 
-  s.add_development_dependency 'bundler', '~>1'
+  s.add_development_dependency 'bundler', '~>2'
   s.add_dependency 'treetop', '~>1'
+  s.add_dependency 'ostruct', '~>0'
 #  s.add_dependency 'json'
   s.add_dependency 'neatjson', '~>0.10'
 end
