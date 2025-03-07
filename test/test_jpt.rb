@@ -5,18 +5,25 @@ require "json"
 describe JPT do
   JSON.parse(File.read("test/jsonpath-compliance-test-suite/cts.json")).fetch("tests").each do |test|
     name = test["name"]
+    selector = test.fetch("selector")
 
-    it "test: #{name.inspect}" do
-      if test.key?("result")
-        result = JPT.from_jp(test.fetch("selector")).apply(test["document"])
-        assert_equal(result, test["result"])
-      elsif test["invalid_selector"]
+    if test["invalid_selector"]
+      it "fails with invalid selector #{selector.inspect} (#{name.inspect})" do
         # Should this really raise? – Some "invalid selectors" just work.
         assert_raises do
-          JPT.from_jp(test.fetch("selector"))
+          JPT.from_jp(selector)
         end
+      end
+      next
+    end
+
+    it "queries #{selector.inspect} (#{name.inspect})" do
+      document = test["document"]
+      if test.key?("result")
+        result = JPT.from_jp(selector).apply(document)
+        assert_equal(result, test["result"])
       elsif test.key?("results")
-        result = JPT.from_jp(test.fetch("selector")).apply(test["document"])
+        result = JPT.from_jp(selector).apply(document)
         assert_includes(test["results"], result)
       else
         raise "don't know how to test #{name} – #{test.inspect}"
